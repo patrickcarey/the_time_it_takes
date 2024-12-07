@@ -1,8 +1,7 @@
-const images = ["images/fifteen.png", "images/four.png", "images/nine.png", "images/tapes3.JPEG", "images/seven.png", "images/six.png", "images/tapes1.jpg", "images/three.png", "images/two.jpeg", "images/eleven.png", "images/five.png", "images/fourteen.jpg", "images/ten.png", "images/twelve.png", "images/eight.png", "images/jose.jpg", "images/etla.JPEG", "images/falls.JPEG", "images/pave.JPEG", "images/tapes2.jpeg", "images/thorns.JPEG"]
+const images = ["images/fifteen.png", "images/four.png", "images/nine.png", "images/tapes3.JPEG", "images/seven.png", "images/six.png", "images/tapes1.jpg", "images/three.png", "images/two.jpeg", "images/eleven.png", "images/five.png", "images/fourteen.jpg", "images/ten.png", "images/twelve.png", "images/eight.png", "images/jose.jpg", "images/etla.JPEG", "images/falls.JPEG", "images/pave.JPEG", "images/tapes2.JPEG", "images/thorns.JPEG"]
 firstTouch = true;
 let touch = 0;
 const gain = new Tone.Gain(1).toDestination();
-
 
 const player = new Tone.Players({
     etla: "sounds/etla1.mp3",
