@@ -1,21 +1,21 @@
 const files = [
-    "images/fifteen.png",
     "images/four.png",
     "images/nine.png",
-    "images/tapes3.JPEG",
+    "images/tapes3.png",
     "images/seven.png",
     "images/six.png",
-    "images/tapes1.jpg",
+    "images/tapes1.png",
     "images/three.png",
+    "images/three-removebg.png",
     "images/two.jpeg",
     "images/eleven.png",
     "images/five.png",
-    "images/fourteen.jpg",
+    "images/cinco.png",
     "images/ten.png",
     "images/twelve.png",
     "images/eight.png",
     "images/jose.jpg",
-    "images/etla.JPEG",
+    "images/etla.png",
     "images/falls.JPEG",
     "images/pave.JPEG",
     "images/tapes2.png",
@@ -42,8 +42,6 @@ const files = [
     "images/bug5.png",
     "images/DOS.jpeg",
     "images/TRES.JPEG",
-    "images/CUATRO.JPEG",
-
     "images/graphics-01.png",
     "images/graphics-03.png",
     "images/graphics-04.png",
@@ -124,7 +122,11 @@ const files = [
     "images/graphics-109.png",
     "images/graphics-111.png",
     "images/graphics-112.png",
-    "images/graphics-114.png"
+    "images/graphics-114.png",
+    "images/stone cutout.png",
+    "images/mountain cutout.png",
+    "images/matt.png",
+    "images/little cloud.png"
 ];
 
 
