@@ -4,17 +4,28 @@ firstTouch = true;
 let touch = 0;
 let gain;
 let player;
+let path;
+let pathLength;
+let pathCounter = 3100;
+let filesLoaded = false;
+let frame;
 const imageFiles = shuffle(files);
 
 function preload() {
     imgs[0] = loadImage(imageFiles[0]);
+    imgs[1] = loadImage(imageFiles[1]);
+    imgs[2] = loadImage(imageFiles[2]);
+    imgs[3] = loadImage(imageFiles[3]);
+    imgs[4] = loadImage(imageFiles[4]);
+    frame = loadImage('images/frame.png')
 }
 
 function setup() {
     angleMode(DEGREES);
     createCanvas(windowWidth, windowHeight);
-    background(20)
-    imageMode(CENTER)
+    background(20);
+    imageMode(CENTER);
+    textAlign(CENTER);
     gain = new Tone.Gain(1).toDestination();
     player = new Tone.Players({
         etla: "sounds/etla1.mp3",
@@ -38,11 +49,15 @@ function setup() {
         noodle10: "sounds/noodle_10.wav",
         noodle11: "sounds/noodle_11.wav"
     }, () => {
-        console.log('loaded')
+        filesLoaded = true;
     });
     player.fadeIn = 1;
     player.fadeOut = 1;
     player.connect(gain);
+}
+
+function draw() {
+    drawLoadingAnimation();
 }
 
 document.addEventListener("click", async() => {
@@ -57,7 +72,7 @@ document.addEventListener("click", async() => {
         } else if (touch == 3) {
             player.player('palm').start(0, Math.random() * 20, 5);
         } else if (touch == 6) {
-            player.player('noodle1').start(0, Math.random() * 30, 10);
+            player.player('noodle1').start(0, Math.random() * 30, 7);
         } else if (touch == 9) {
             player.player('campo').start(0, Math.random() * 5, 5);
         } else if (touch == 12) {
@@ -65,7 +80,7 @@ document.addEventListener("click", async() => {
         } else if (touch == 15) {
             player.player('dogs').start(0, Math.random() * 10, 5);
         } else if (touch == 18) {
-            player.player('noodle2').start(0, Math.random() * 30, 10);
+            player.player('noodle2').start(0, Math.random() * 30, 7);
         } else if (touch == 21) {
             player.player('recs').start(0, 0, 5);
         } else if (touch == 24) {
@@ -73,13 +88,13 @@ document.addEventListener("click", async() => {
         } else if (touch == 27) {
             player.player('shards').start(0, Math.random() * 15, 5);
         } else if (touch == 30) {
-            player.player('noodle4').start(0, Math.random() * 30, 10);
+            player.player('noodle4').start(0, Math.random() * 30, 7);
         } else if (touch == 33) {
             player.player('squeek').start(0, Math.random() * 20, 5);
         } else if (touch == 36) {
             player.player('zocalo').start(0, Math.random() * 15, 5);
         } else if (touch == 39) {
-            player.player('noodle10').start(0, Math.random() * 30, 10);
+            player.player('noodle10').start(0, Math.random() * 30, 7);
         } else if (touch == 42) {
             player.player('crickets').start(0, Math.random() * 15, 5);
         } else if (touch == 45) {
@@ -87,7 +102,7 @@ document.addEventListener("click", async() => {
         } else if (touch == 48) {
             player.player('pebble').start(0, Math.random() * 15, 5);
         } else if (touch == 51) {
-            player.player('noodle11').start(0, Math.random() * 30, 10);
+            player.player('noodle11').start(0, Math.random() * 30, 7);
         } else if (touch == 54) {
             player.player('stone').start(0, Math.random() * 20, 5);
         } else if (touch == 57) {
@@ -95,7 +110,6 @@ document.addEventListener("click", async() => {
         }
 
     }
-    console.log(touch);
     touch++;
     if (touch > 57) {
         touch = 0;
@@ -104,15 +118,62 @@ document.addEventListener("click", async() => {
 
 function mousePressed() {
     let img = imgs[counter];
-    img.resize(random(200, 600), 0);
     push();
     translate(mouseX, mouseY);
+    if (img.width > 3000) {
+        let scaleDown = random(0.1, 0.3)
+        scale(scaleDown)
+    } else if (img.width > 1000) {
+        let scaleDown = random(0.1, 0.5)
+        scale(scaleDown)
+    } else if (img.width > 500) {
+        let scaleDown = random(0.5, 1.0)
+        scale(scaleDown);
+    } else {
+        let scaleDown = random(0.5, 1.5)
+        scale(scaleDown)
+    }
     rotate(random(-15, 15))
     image(img, 0, 0);
     pop();
     counter++;
-    let nextImg = loadImage(imageFiles[counter % imageFiles.length]);
-
+    let nextImg = loadImage(imageFiles[(counter + 4) % imageFiles.length]);
     imgs.push(nextImg);
-
 }
+
+
+function drawLoadingAnimation() {
+    let scaler = 0.3;
+    stroke("#fffb00")
+    strokeWeight(8);
+    let originPoint = path.getPointAtLength(0);
+    let thisPoint = path.getPointAtLength(pathCounter)
+    if (pathCounter < 7500) {
+        push();
+        translate(width / 2 - 150, height / 2 - 200);
+        point(thisPoint.x * scaler, thisPoint.y * scaler);
+        pop();
+        pathCounter += 15;
+    } else {
+        if (filesLoaded) {
+            background(20);
+            textSize(32);
+            textFont('Atkinson Hyperlegible Mono')
+            noStroke();
+            fill("#fffb00");
+            push();
+            translate(width / 2 - 150, height / 2 - 200);
+            text('haga clic', thisPoint.x * scaler, thisPoint.y * scaler)
+            pop();
+            noLoop();
+        } else {
+            background(20);
+            pathCounter = 3100;
+        }
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function(event) {
+    path = document.getElementById('path1')
+    pathLength = Math.floor(path.getTotalLength());
+});
