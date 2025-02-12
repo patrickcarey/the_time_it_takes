@@ -123,10 +123,10 @@ const files = [
     "images/graphics-111.png",
     "images/graphics-112.png",
     "images/graphics-114.png",
-    "images/stone cutout.png",
-    "images/mountain cutout.png",
+    "images/stone_cutout-removebg.png",
+    "images/mountain_cutout_removebg.png",
     "images/matt.png",
-    "images/little cloud.png"
+    "images/little_cloud_removebg.png"
 ];
 
 
