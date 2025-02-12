@@ -9,6 +9,8 @@ let pathLength;
 let pathCounter = 3100;
 let filesLoaded = false;
 let frame;
+let alphaCounter = 0;
+let firstClick = false;
 const imageFiles = shuffle(files);
 
 function preload() {
@@ -29,25 +31,25 @@ function setup() {
     gain = new Tone.Gain(1).toDestination();
     player = new Tone.Players({
         etla: "sounds/etla1.mp3",
-        palm: "sounds/palm.wav",
-        rocks: "sounds/rocks.wav",
+        palm: "sounds/palm.mp3",
+        rocks: "sounds/rocks.mp3",
         campo: "sounds/camp.mp3",
         cap: "sounds/cap.wav",
         dogs: "sounds/dogs.mp3",
-        pebble: "sounds/pebble.wav",
-        recs: "sounds/recs.wav",
-        scrape: "sounds/scrape.wav",
-        shards: "sounds/shards.wav",
-        stone: "sounds/stone.wav",
+        pebble: "sounds/pebble.mp3",
+        recs: "sounds/recs.mp3",
+        scrape: "sounds/scrape.mp3",
+        shards: "sounds/shards.mp3",
+        stone: "sounds/stone.mp3",
         squeek: "sounds/sqwik.mp3",
         zocalo: "sounds/zocalo.mp3",
         rain: "sounds/rain.mp3",
         crickets: "sounds/crickets.mp3",
-        noodle1: "sounds/noodle_01.wav",
-        noodle2: "sounds/noodle_02.wav",
-        noodle4: "sounds/noodle_04.wav",
-        noodle10: "sounds/noodle_10.wav",
-        noodle11: "sounds/noodle_11.wav"
+        noodle1: "sounds/noodle_01.mp3",
+        noodle2: "sounds/noodle_02.mp3",
+        noodle4: "sounds/noodle_04.mp3",
+        noodle10: "sounds/noodle_10.mp3",
+        noodle11: "sounds/noodle_11.mp3"
     }, () => {
         filesLoaded = true;
     });
@@ -141,7 +143,6 @@ function mousePressed() {
     imgs.push(nextImg);
 }
 
-
 function drawLoadingAnimation() {
     let scaler = 0.3;
     stroke("#fffb00")
@@ -160,7 +161,8 @@ function drawLoadingAnimation() {
             textSize(32);
             textFont('Atkinson Hyperlegible Mono')
             noStroke();
-            fill("#fffb00");
+            fill(255, 251, 0);
+            alphaCounter += 10;
             push();
             translate(width / 2 - 150, height / 2 - 200);
             text('haga clic', thisPoint.x * scaler, thisPoint.y * scaler)
