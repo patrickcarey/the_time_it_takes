@@ -10,6 +10,7 @@ let pathCounter = 3100;
 let filesLoaded = false;
 let frame;
 const imageFiles = shuffle(files);
+unmuteIosAudio()
 
 function preload() {
     imgs[0] = loadImage(imageFiles[0]);
