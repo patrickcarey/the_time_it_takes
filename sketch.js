@@ -8,9 +8,11 @@ let path;
 let pathLength;
 let pathCounter = 3100;
 let filesLoaded = false;
+let loadingAnimation = true;
 let frame;
+
 const imageFiles = shuffle(files);
-unmuteIosAudio()
+const silence = document.getElementById("silence");
 
 function preload() {
     imgs[0] = loadImage(imageFiles[0]);
@@ -62,140 +64,145 @@ function draw() {
 }
 
 document.addEventListener("click", async() => {
-    if (touch == 0) {
-        await Tone.start();
-        console.log("audio is ready");
-        firstTouch = false;
-    }
-    if (player.loaded) {
+    if (!loadingAnimation) {
         if (touch == 0) {
-            player.player('rocks').start(0, Math.random() * 10, 5);
-        } else if (touch == 3) {
-            player.player('palm').start(0, Math.random() * 20, 5);
-        } else if (touch == 6) {
-            player.player('noodle1').start(0, Math.random() * 30, 7);
-        } else if (touch == 9) {
-            player.player('campo').start(0, Math.random() * 5, 5);
-        } else if (touch == 12) {
-            player.player('cap').start(0, Math.random() * 15, 5);
-        } else if (touch == 15) {
-            player.player('dogs').start(0, Math.random() * 10, 5);
-        } else if (touch == 18) {
-            player.player('noodle2').start(0, Math.random() * 30, 7);
-        } else if (touch == 21) {
-            player.player('recs').start(0, 0, 5);
-        } else if (touch == 24) {
-            player.player('scrape').start(0, Math.random() * 10, 5);
-        } else if (touch == 27) {
-            player.player('shards').start(0, Math.random() * 15, 5);
-        } else if (touch == 30) {
-            player.player('noodle4').start(0, Math.random() * 30, 7);
-        } else if (touch == 33) {
-            player.player('squeek').start(0, Math.random() * 20, 5);
-        } else if (touch == 36) {
-            player.player('zocalo').start(0, Math.random() * 15, 5);
-        } else if (touch == 39) {
-            player.player('noodle10').start(0, Math.random() * 30, 7);
-        } else if (touch == 42) {
-            player.player('crickets').start(0, Math.random() * 15, 5);
-        } else if (touch == 45) {
-            player.player('etla').start(0, Math.random() * 10, 5);
-        } else if (touch == 48) {
-            player.player('pebble').start(0, Math.random() * 15, 5);
-        } else if (touch == 51) {
-            player.player('noodle11').start(0, Math.random() * 30, 7);
-        } else if (touch == 54) {
-            player.player('stone').start(0, Math.random() * 20, 5);
-        } else if (touch == 57) {
-            player.player('rain').start(0, Math.random() * 15, 5);
+            silence.play();
+            await Tone.start();
+            console.log("audio is ready");
+            firstTouch = false;
         }
-
-    }
-    touch++;
-    if (touch > 57) {
-        touch = 0;
+        if (player.loaded) {
+            if (touch == 0) {
+                player.player('rocks').start(0, Math.random() * 10, 5);
+            } else if (touch == 3) {
+                player.player('palm').start(0, Math.random() * 20, 5);
+            } else if (touch == 6) {
+                player.player('noodle1').start(0, Math.random() * 30, 7);
+            } else if (touch == 9) {
+                player.player('campo').start(0, Math.random() * 5, 5);
+            } else if (touch == 12) {
+                player.player('cap').start(0, Math.random() * 15, 5);
+            } else if (touch == 15) {
+                player.player('dogs').start(0, Math.random() * 10, 5);
+            } else if (touch == 18) {
+                player.player('noodle2').start(0, Math.random() * 30, 7);
+            } else if (touch == 21) {
+                player.player('recs').start(0, 0, 5);
+            } else if (touch == 24) {
+                player.player('scrape').start(0, Math.random() * 10, 5);
+            } else if (touch == 27) {
+                player.player('shards').start(0, Math.random() * 15, 5);
+            } else if (touch == 30) {
+                player.player('noodle4').start(0, Math.random() * 30, 7);
+            } else if (touch == 33) {
+                player.player('squeek').start(0, Math.random() * 20, 5);
+            } else if (touch == 36) {
+                player.player('zocalo').start(0, Math.random() * 15, 5);
+            } else if (touch == 39) {
+                player.player('noodle10').start(0, Math.random() * 30, 7);
+            } else if (touch == 42) {
+                player.player('crickets').start(0, Math.random() * 15, 5);
+            } else if (touch == 45) {
+                player.player('etla').start(0, Math.random() * 10, 5);
+            } else if (touch == 48) {
+                player.player('pebble').start(0, Math.random() * 15, 5);
+            } else if (touch == 51) {
+                player.player('noodle11').start(0, Math.random() * 30, 7);
+            } else if (touch == 54) {
+                player.player('stone').start(0, Math.random() * 20, 5);
+            } else if (touch == 57) {
+                player.player('rain').start(0, Math.random() * 15, 5);
+            }
+        }
+        touch++;
+        if (touch > 57) {
+            touch = 0;
+        }
     }
 });
 
 document.addEventListener("touchstart", async() => {
-    if (touch == 0) {
-        await Tone.start();
-        console.log("touch audio is ready");
-        firstTouch = false;
-    }
-    if (player.loaded) {
+    if (!loadingAnimation) {
         if (touch == 0) {
-            player.player('rocks').start(0, Math.random() * 10, 5);
-        } else if (touch == 3) {
-            player.player('palm').start(0, Math.random() * 20, 5);
-        } else if (touch == 6) {
-            player.player('noodle1').start(0, Math.random() * 30, 7);
-        } else if (touch == 9) {
-            player.player('campo').start(0, Math.random() * 5, 5);
-        } else if (touch == 12) {
-            player.player('cap').start(0, Math.random() * 15, 5);
-        } else if (touch == 15) {
-            player.player('dogs').start(0, Math.random() * 10, 5);
-        } else if (touch == 18) {
-            player.player('noodle2').start(0, Math.random() * 30, 7);
-        } else if (touch == 21) {
-            player.player('recs').start(0, 0, 5);
-        } else if (touch == 24) {
-            player.player('scrape').start(0, Math.random() * 10, 5);
-        } else if (touch == 27) {
-            player.player('shards').start(0, Math.random() * 15, 5);
-        } else if (touch == 30) {
-            player.player('noodle4').start(0, Math.random() * 30, 7);
-        } else if (touch == 33) {
-            player.player('squeek').start(0, Math.random() * 20, 5);
-        } else if (touch == 36) {
-            player.player('zocalo').start(0, Math.random() * 15, 5);
-        } else if (touch == 39) {
-            player.player('noodle10').start(0, Math.random() * 30, 7);
-        } else if (touch == 42) {
-            player.player('crickets').start(0, Math.random() * 15, 5);
-        } else if (touch == 45) {
-            player.player('etla').start(0, Math.random() * 10, 5);
-        } else if (touch == 48) {
-            player.player('pebble').start(0, Math.random() * 15, 5);
-        } else if (touch == 51) {
-            player.player('noodle11').start(0, Math.random() * 30, 7);
-        } else if (touch == 54) {
-            player.player('stone').start(0, Math.random() * 20, 5);
-        } else if (touch == 57) {
-            player.player('rain').start(0, Math.random() * 15, 5);
+            await Tone.start();
+            console.log("touch audio is ready");
+            firstTouch = false;
         }
-
-    }
-    touch++;
-    if (touch > 57) {
-        touch = 0;
+        if (player.loaded) {
+            if (touch == 0) {
+                player.player('rocks').start(0, Math.random() * 10, 5);
+            } else if (touch == 3) {
+                player.player('palm').start(0, Math.random() * 20, 5);
+            } else if (touch == 6) {
+                player.player('noodle1').start(0, Math.random() * 30, 7);
+            } else if (touch == 9) {
+                player.player('campo').start(0, Math.random() * 5, 5);
+            } else if (touch == 12) {
+                player.player('cap').start(0, Math.random() * 15, 5);
+            } else if (touch == 15) {
+                player.player('dogs').start(0, Math.random() * 10, 5);
+            } else if (touch == 18) {
+                player.player('noodle2').start(0, Math.random() * 30, 7);
+            } else if (touch == 21) {
+                player.player('recs').start(0, 0, 5);
+            } else if (touch == 24) {
+                player.player('scrape').start(0, Math.random() * 10, 5);
+            } else if (touch == 27) {
+                player.player('shards').start(0, Math.random() * 15, 5);
+            } else if (touch == 30) {
+                player.player('noodle4').start(0, Math.random() * 30, 7);
+            } else if (touch == 33) {
+                player.player('squeek').start(0, Math.random() * 20, 5);
+            } else if (touch == 36) {
+                player.player('zocalo').start(0, Math.random() * 15, 5);
+            } else if (touch == 39) {
+                player.player('noodle10').start(0, Math.random() * 30, 7);
+            } else if (touch == 42) {
+                player.player('crickets').start(0, Math.random() * 15, 5);
+            } else if (touch == 45) {
+                player.player('etla').start(0, Math.random() * 10, 5);
+            } else if (touch == 48) {
+                player.player('pebble').start(0, Math.random() * 15, 5);
+            } else if (touch == 51) {
+                player.player('noodle11').start(0, Math.random() * 30, 7);
+            } else if (touch == 54) {
+                player.player('stone').start(0, Math.random() * 20, 5);
+            } else if (touch == 57) {
+                player.player('rain').start(0, Math.random() * 15, 5);
+            }
+        }
+        touch++;
+        if (touch > 57) {
+            touch = 0;
+        }
     }
 });
 
 function mousePressed() {
-    let img = imgs[counter];
-    push();
-    translate(mouseX, mouseY);
-    if (img.width > 3000) {
-        let scaleDown = random(0.1, 0.3)
-        scale(scaleDown)
-    } else if (img.width > 1000) {
-        let scaleDown = random(0.1, 0.5)
-        scale(scaleDown)
-    } else if (img.width > 500) {
-        let scaleDown = random(0.5, 1.0)
-        scale(scaleDown);
-    } else {
-        let scaleDown = random(0.5, 1.5)
-        scale(scaleDown)
+    if (!loadingAnimation) {
+        let img = imgs[counter];
+        push();
+        translate(mouseX, mouseY);
+        if (img.width > 3000) {
+            let scaleDown = random(0.1, 0.3)
+            scale(scaleDown)
+        } else if (img.width > 1000) {
+            let scaleDown = random(0.1, 0.5)
+            scale(scaleDown)
+        } else if (img.width > 500) {
+            let scaleDown = random(0.5, 1.0)
+            scale(scaleDown);
+        } else {
+            let scaleDown = random(0.5, 1.5)
+            scale(scaleDown)
+        }
+        rotate(random(-15, 15))
+        image(img, 0, 0);
+        pop();
+        counter++;
+        let nextImg = loadImage(imageFiles[(counter + 4) % imageFiles.length]);
+        imgs.push(nextImg);
     }
-    rotate(random(-15, 15))
-    image(img, 0, 0);
-    pop();
-    counter++;
-    let nextImg = loadImage(imageFiles[(counter + 4) % imageFiles.length]);
-    imgs.push(nextImg);
 }
 
 function drawLoadingAnimation() {
@@ -221,6 +228,7 @@ function drawLoadingAnimation() {
             translate(width / 2 - 150, height / 2 - 200);
             text('haga clic', thisPoint.x * scaler, thisPoint.y * scaler)
             pop();
+            loadingAnimation = false;
             noLoop();
         } else {
             background(20);
