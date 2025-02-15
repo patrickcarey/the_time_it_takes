@@ -9,7 +9,7 @@ let pathLength;
 let pathCounter = 3100;
 let filesLoaded = false;
 let loadingAnimation = true;
-let frame;
+let font;
 
 const imageFiles = shuffle(files);
 const silence = document.getElementById("silence");
@@ -20,7 +20,7 @@ function preload() {
     imgs[2] = loadImage(imageFiles[2]);
     imgs[3] = loadImage(imageFiles[3]);
     imgs[4] = loadImage(imageFiles[4]);
-    frame = loadImage('images/frame.png')
+    font = loadFont('font/ViksjoeTrial-Regular.otf');
 }
 
 function setup() {
@@ -183,14 +183,18 @@ function mousePressed() {
         let img = imgs[counter];
         push();
         translate(mouseX, mouseY);
-        if (img.width > 3000) {
+        console.log(img.width);
+        if (img.width > 4000) {
+            let scaleDown = 0.1;
+            scale(scaleDown)
+        } else if (img.width > 3000) {
             let scaleDown = random(0.1, 0.3)
             scale(scaleDown)
         } else if (img.width > 1000) {
-            let scaleDown = random(0.1, 0.5)
+            let scaleDown = random(0.1, 0.3)
             scale(scaleDown)
         } else if (img.width > 500) {
-            let scaleDown = random(0.5, 1.0)
+            let scaleDown = random(0.5, 0.7)
             scale(scaleDown);
         } else {
             let scaleDown = random(0.5, 1.5)
@@ -220,8 +224,8 @@ function drawLoadingAnimation() {
     } else {
         if (filesLoaded) {
             background(20);
-            textSize(32);
-            textFont('Atkinson Hyperlegible Mono')
+            textSize(24);
+            textFont(font)
             noStroke();
             fill(255, 251, 0);
             push();
